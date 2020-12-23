@@ -1,0 +1,129 @@
+body{
+    background: #f8eded;
+}
+*:active,
+*:hover,
+*:focus{
+    outline: 0;
+    outline-offset: 0;
+}
+li{
+    list-style-type: none;
+}
+.main{
+    background: ghostwhite;
+    width: 600px;
+    height: 600px;
+    margin: 20px;
+    padding: 20px;
+    position: center;
+    border: 10px;
+    border-color: black;
+}
+.repository__form{
+    margin-left: 0;
+position: relative;
+}
+.list{
+    background: darkgrey;
+
+}
+.repository__search{
+    width: 75px;
+    transition: 200ms width;
+}
+.repository__search:active,
+.repository__search:focus{
+    width: 200px;
+
+}
+
+
+.repository__autocomplete{
+    width: 208px;
+    height: auto;
+    font-size: 16px;
+    background: linear-gradient(#ffffff 40%, #ffd2ca 240%);
+    margin-top: 0;
+    padding-left: 0;
+}
+
+
+
+
+.autocomplete__li{
+    padding-left: 4px;
+}
+.autocomplete__li:hover{
+background-color: #ffd2ca;
+}
+
+
+.repository__list{
+    height: auto;
+    width: 300px;
+    padding: 0;
+    argin-left: 4px
+}
+
+.repository__li{
+    place-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    height-min: 40px;
+    background: #ffd2ca;
+    border: 2px solid #00000045;
+    border-radius: 3%;
+    margin: 5px;
+    margin-left: 0;
+    padding: 10px;
+    position: relative;
+}
+.repository__item{
+    padding: 1px;
+    margin: 1px;
+}
+
+.repository__button{
+    position: absolute;
+    right: 5%;
+    top: 7%;
+    border: none;
+
+}
+
+.button-close {
+    background-color:  #ffd2ca;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+
+}
+.button-close:hover {
+    opacity: 0.5;
+
+}
+.button-close:before,
+.button-close:after {
+    position: absolute;
+    left: 15px;
+    content: '';
+    height: 33px;
+    width: 2px;
+    background-color: #cb5e2d;
+    transition: transform 2ms;
+
+}
+.button-close:before {
+    transform: rotate(45deg);
+}
+.button-close:after {
+    transform: rotate(-45deg);
+}
+.button-close:before:hover{
+    transform: rotate(180deg);
+}
+.button-close:after:hover {
+    transform: rotate(-180deg);
+}
