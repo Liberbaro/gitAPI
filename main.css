@@ -83,6 +83,7 @@ background-color: #ffd2ca;
 .repository__item{
     padding: 1px;
     margin: 1px;
+    overflow: hidden;
 }
 
 .repository__button{
