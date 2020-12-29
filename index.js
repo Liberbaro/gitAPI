@@ -23,7 +23,7 @@ function  delRepoBtnClickHandler (){
 
 function  createRepositoryLi( { name, owner, stargazers_count }){
     return `<li class="repository__li">
-        <p class = "repository__item">Name: ${name}</p>
+        <p class = "repository__item"> Name: ${name}</p>
         <p class = "repository__item"> Owner: ${owner.login} </p>
         <p class = "repository__item"> Stars: ${stargazers_count}</p>
         <button class = "repository__button button-close"></button>
@@ -55,8 +55,8 @@ function autocompleteSearch(RepoDate){
     })
 }
 
-function  getRepoDate(repoName){
-  return  fetch(`${gitAPI}${repoName}`)
+async function  getRepoDate(repoName){
+  return  await fetch(`${gitAPI}${repoName}`)
       .then( resp => resp.json())
       .then( res => res.items.slice(0,5))
       .then( res => autocompleteSearch(res))
@@ -74,13 +74,21 @@ const debounce = (cb, debounceTime) => {
 const debounceGetRepoDate = debounce(getRepoDate, 200);
 
 function windowEscHandler(evt){
-    if(evt.keyCode == 27) clearElem(autocomplete);
-    search.addEventListener('click', searchInputClickHandler);
+    if(evt.keyCode == 27) {
+        clearElem(autocomplete);
+        window.removeEventListener('keydown', windowEscHandler);
+        window.removeEventListener('click', windowClickHandler);
+        search.addEventListener('click', searchInputClickHandler);
+    }
 }
 
 function windowClickHandler(evt){
-    if( evt.target!== search ) clearElem(autocomplete);
-    search.addEventListener('click', searchInputClickHandler);
+    if( evt.target!== search ) {
+        clearElem(autocomplete);
+        window.removeEventListener('keydown', windowEscHandler);
+        window.removeEventListener('click', windowClickHandler);
+        search.addEventListener('click', searchInputClickHandler);
+    }
 }
 
 function searchInputClickHandler (evt) {
@@ -88,6 +96,7 @@ function searchInputClickHandler (evt) {
     newRequest? debounceGetRepoDate(newRequest) : clearElem(autocomplete);
     window.addEventListener('keydown', windowEscHandler);
     window.addEventListener('click', windowClickHandler);
+    search.removeEventListener('click', searchInputClickHandler);
 }
 
 
