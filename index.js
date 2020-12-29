@@ -2,7 +2,7 @@ const search = document.querySelector(".repository__search");
 const autocomplete = document.querySelector('.repository__autocomplete');
 const repositoryList = document.querySelector('.repository__list');
 const gitAPI = 'https://api.github.com/search/repositories?q=';
-
+const form = document.querySelector('.repository__form')
 
 
 function clearElem (parent){
@@ -92,6 +92,10 @@ function windowClickHandler(evt){
 }
 
 function searchInputClickHandler (evt) {
+    if(event.keyCode == 13) {
+        console.log('work')
+        event.preventDefault();
+    }
     const newRequest = evt.target.value;
     newRequest? debounceGetRepoDate(newRequest) : clearElem(autocomplete);
     window.addEventListener('keydown', windowEscHandler);
@@ -99,8 +103,10 @@ function searchInputClickHandler (evt) {
     search.removeEventListener('click', searchInputClickHandler);
 }
 
+function formEnterDisableHandler(){
+    if(event.keyCode == 13) event.preventDefault()
+}
 
-
-
+form.addEventListener('keydown', formEnterDisableHandler);
 search.addEventListener('input', searchInputClickHandler);
 

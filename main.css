@@ -53,6 +53,7 @@ position: relative;
 
 .autocomplete__li{
     padding-left: 4px;
+    overflow: hidden;
 }
 .autocomplete__li:hover{
 background-color: #ffd2ca;
@@ -84,6 +85,7 @@ background-color: #ffd2ca;
     padding: 1px;
     margin: 1px;
     overflow: hidden;
+    max-width: 170px;
 }
 
 .repository__button{
